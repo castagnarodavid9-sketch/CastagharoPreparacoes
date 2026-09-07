@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Castagharo Preparações — CSS customizado
+   Apenas ajustes visuais (cores, gradientes, espaçamentos).
+   Todo o layout e os componentes vêm do Bootstrap 5 via CDN.
+   ========================================================================== */
+
+/* --- Variáveis de tema (paleta escura + degradê vermelho/laranja) --------- */
+:root {
+  --cp-black: #0a0a0c;
+  --cp-graphite: #14161a;
+  --cp-graphite-2: #1c1f25;
+  --cp-line: rgba(255, 255, 255, 0.08);
+  --cp-red: #e01b1b;
+  --cp-orange: #ff7a18;
+  --cp-grad: linear-gradient(135deg, #e01b1b 0%, #ff7a18 100%);
+  --cp-grad-soft: linear-gradient(160deg, #14161a 0%, #0a0a0c 60%, #1a0d0d 100%);
+}
+
+/* --- Base ---------------------------------------------------------------- */
+body {
+  background-color: var(--cp-black);
+  color: #d9dbe1;
+  font-family: "Inter", system-ui, sans-serif;
+  padding-top: 72px; /* compensa a navbar fixa */
+}
+
+h1, h2, h3, h4, .display-1, .display-3, .navbar-brand {
+  font-family: "Racing Sans One", "Inter", sans-serif;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+section { scroll-margin-top: 80px; } /* âncoras não ficam sob a navbar */
+
+/* Texto com preenchimento em degradê (títulos de destaque) */
+.text-grad {
+  background: var(--cp-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--cp-orange);
+}
+
+/* Seções alternadas com fundo em degradê suave */
+.bg-alt { background: var(--cp-grad-soft); }
+.bg-graphite { background-color: var(--cp-graphite); }
+
+/* --- Navbar -------------------------------------------------------------- */
+.navbar {
+  background-color: rgba(10, 10, 12, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--cp-line);
+}
+.navbar-brand { font-size: 1.35rem; }
+.navbar .nav-link {
+  color: #c9ccd3;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link.active { color: #fff; }
+
+/* --- Botões -------------------------------------------------------------- */
+.btn-grad {
+  background: var(--cp-grad);
+  color: #fff;
+  border: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.75rem 1.75rem;
+  box-shadow: 0 10px 30px rgba(224, 27, 27, 0.28);
+}
+.btn-grad:hover { color: #fff; filter: brightness(1.1); }
+
+.btn-outline-light-2 {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.75rem 1.75rem;
+}
+.btn-outline-light-2:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+/* --- Hero ---------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  background: url("img/hero.jpg") center/cover no-repeat;
+}
+/* Camada de degradê sobre a foto para dar contraste ao texto */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10,10,12,0.94) 0%, rgba(10,10,12,0.72) 45%, rgba(224,27,27,0.28) 100%);
+}
+.hero > .container { position: relative; z-index: 2; }
+
+/* --- Cards de serviço ---------------------------------------------------- */
+.card-service {
+  background-color: var(--cp-graphite-2);
+  border: 1px solid var(--cp-line);
+  border-radius: 14px;
+  height: 100%;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.card-service:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 122, 24, 0.55);
+}
+.card-service .icon-box {
+  width: 54px; height: 54px;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  background: var(--cp-grad);
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* --- Números / stats ----------------------------------------------------- */
+.stat-value { font-size: 2.4rem; font-weight: 800; line-height: 1; }
+
+/* --- Galeria ------------------------------------------------------------- */
+.gallery-img {
+  border-radius: 14px;
+  border: 1px solid var(--cp-line);
+  object-fit: cover;
+  width: 100%;
+  height: 260px;
+}
+
+/* --- Depoimentos --------------------------------------------------------- */
+.quote-card {
+  background-color: var(--cp-graphite-2);
+  border: 1px solid var(--cp-line);
+  border-radius: 16px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* --- Formulário ---------------------------------------------------------- */
+.form-control, .form-control:focus {
+  background-color: var(--cp-graphite-2);
+  border: 1px solid var(--cp-line);
+  color: #fff;
+}
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 122, 24, 0.2);
+  border-color: var(--cp-orange);
+}
+.form-control::placeholder { color: #7c828e; }
+
+/* --- Accordion (FAQ) ---------------------------------------------------- */
+.accordion-item {
+  background-color: var(--cp-graphite-2);
+  border: 1px solid var(--cp-line);
+  margin-bottom: 0.75rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.accordion-button {
+  background-color: var(--cp-graphite-2);
+  color: #fff;
+  font-weight: 600;
+}
+.accordion-button:not(.collapsed) { background: var(--cp-grad); color: #fff; }
+.accordion-button:focus { box-shadow: none; }
+.accordion-body { color: #b6bac3; }
+
+/* --- Footer ------------------------------------------------------------- */
+footer { background-color: var(--cp-graphite); border-top: 1px solid var(--cp-line); }
+footer a { color: #b6bac3; text-decoration: none; }
+footer a:hover { color: var(--cp-orange); }
+.social-link {
+  width: 40px; height: 40px;
+  display: inline-grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--cp-line);
+  color: #fff;
+}
+.social-link:hover { background: var(--cp-grad); color: #fff; }
+
+/* --- Ajustes responsivos ------------------------------------------------ */
+@media (max-width: 767.98px) {
+  .hero { min-height: 78vh; text-align: center; }
+  .hero::after { background: linear-gradient(180deg, rgba(10,10,12,0.85), rgba(10,10,12,0.95)); }
+  .gallery-img { height: 200px; }
+}

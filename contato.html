@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contato e agendamento | Castagharo Preparações</title>
+  <meta name="description" content="Fale com a Castagharo Preparações: endereço, WhatsApp, horários e formulário para agendar sua avaliação." />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand text-grad" href="index.html">CASTAGHARO PREPARAÇÕES</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-label="Abrir menu">
+      <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+        <li class="nav-item"><a class="nav-link" href="servicos.html">Serviços</a></li>
+        <li class="nav-item"><a class="nav-link" href="sobre.html">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#galeria">Galeria</a></li>
+        <li class="nav-item"><a class="nav-link active" href="contato.html">Contato</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="py-5 bg-alt">
+  <div class="container py-5">
+    <p class="section-label mb-2">Contato</p>
+    <h1 class="display-4 mb-0">Vamos falar do seu <span class="text-grad">projeto</span></h1>
+  </div>
+</header>
+
+<section class="py-5">
+  <div class="container py-4">
+    <div class="row g-5">
+      <div class="col-lg-7">
+        <!-- Formulário com validação nativa do Bootstrap -->
+        <form class="row g-3 needs-validation" novalidate>
+          <div class="col-md-6">
+            <label class="form-label" for="nome">Nome</label>
+            <input class="form-control" id="nome" type="text" placeholder="Seu nome" required />
+            <div class="invalid-feedback">Informe seu nome.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="email">E-mail</label>
+            <input class="form-control" id="email" type="email" placeholder="voce@email.com" required />
+            <div class="invalid-feedback">Informe um e-mail válido.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="tel">Telefone</label>
+            <input class="form-control" id="tel" type="tel" placeholder="(11) 90000-0000" required />
+            <div class="invalid-feedback">Informe um telefone.</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="servico">Serviço desejado</label>
+            <select class="form-control" id="servico">
+              <option>Preparação de motor / remap</option>
+              <option>Suspensão e freios</option>
+              <option>Escapamento</option>
+              <option>Estética e envelopamento</option>
+              <option>Dinamômetro</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="msg">Mensagem</label>
+            <textarea class="form-control" id="msg" rows="5" placeholder="Modelo do carro, modificações atuais e objetivo" required></textarea>
+            <div class="invalid-feedback">Escreva sua mensagem.</div>
+          </div>
+          <div class="col-12"><button class="btn btn-grad" type="submit">Enviar</button></div>
+        </form>
+      </div>
+
+      <div class="col-lg-5">
+        <ul class="list-unstyled mb-4">
+          <li class="d-flex gap-3 mb-3"><i class="bi bi-geo-alt fs-4 text-grad"></i><span>Av. dos Preparadores, 1200 — Galpão 4<br />São Paulo · SP</span></li>
+          <li class="d-flex gap-3 mb-3"><i class="bi bi-whatsapp fs-4 text-grad"></i><a class="text-decoration-none text-light" href="https://wa.me/5511900000000">(11) 90000-0000</a></li>
+          <li class="d-flex gap-3 mb-3"><i class="bi bi-envelope fs-4 text-grad"></i><a class="text-decoration-none text-light" href="mailto:contato@castagharo.com.br">contato@castagharo.com.br</a></li>
+          <li class="d-flex gap-3"><i class="bi bi-clock fs-4 text-grad"></i><span>Seg a Sex: 8h – 18h · Sáb: 8h – 13h</span></li>
+        </ul>
+        <div class="ratio ratio-4x3 rounded-4 overflow-hidden border">
+          <iframe src="https://www.google.com/maps?q=S%C3%A3o+Paulo&output=embed" title="Mapa da oficina" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="pt-5 pb-4">
+  <div class="container text-center">
+    <h2 class="h5 text-grad">CASTAGHARO PREPARAÇÕES</h2>
+    <p class="text-secondary small mb-0">© 2026 Castagharo Preparações.</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.querySelectorAll(".needs-validation").forEach(function (form) {
+    form.addEventListener("submit", function (event) {
+      if (!form.checkValidity()) { event.preventDefault(); event.stopPropagation(); }
+      form.classList.add("was-validated");
+    });
+  });
+</script>
+</body>
+</html>
