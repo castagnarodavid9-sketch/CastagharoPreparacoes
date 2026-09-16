@@ -1,7 +1,7 @@
 /* ==========================================================================
-   Castagharo Preparações — CSS customizado
-   Apenas ajustes visuais (cores, gradientes, espaçamentos).
-   Todo o layout e os componentes vêm do Bootstrap 5 via CDN.
+   Castagharo Preparações — CSS customizado (MOBILE FIRST)
+   Os estilos base valem para celular; os @media (min-width) ampliam
+   para tablet e desktop. Layout e componentes vêm do Bootstrap 5 (CDN).
    ========================================================================== */
 
 /* --- Variáveis de tema (paleta escura + degradê vermelho/laranja) --------- */
@@ -14,23 +14,40 @@
   --cp-orange: #ff7a18;
   --cp-grad: linear-gradient(135deg, #e01b1b 0%, #ff7a18 100%);
   --cp-grad-soft: linear-gradient(160deg, #14161a 0%, #0a0a0c 60%, #1a0d0d 100%);
+  --cp-nav-h: 60px;
 }
 
-/* --- Base ---------------------------------------------------------------- */
+/* --- Base (celular) ------------------------------------------------------ */
+* { min-width: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
 body {
   background-color: var(--cp-black);
   color: #d9dbe1;
   font-family: "Inter", system-ui, sans-serif;
-  padding-top: 72px; /* compensa a navbar fixa */
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-top: var(--cp-nav-h);
+  overflow-x: hidden; /* evita rolagem lateral no celular */
 }
 
-h1, h2, h3, h4, .display-1, .display-3, .navbar-brand {
+img, iframe { max-width: 100%; }
+
+h1, h2, h3, h4, .display-1, .display-3, .display-5, .navbar-brand {
   font-family: "Racing Sans One", "Inter", sans-serif;
   letter-spacing: 0.5px;
   color: #fff;
+  overflow-wrap: break-word;
 }
 
-section { scroll-margin-top: 80px; } /* âncoras não ficam sob a navbar */
+/* Títulos fluidos: nunca estouram a tela do celular */
+.display-3 { font-size: clamp(1.9rem, 8.5vw, 4.5rem); line-height: 1.1; }
+.display-4 { font-size: clamp(1.75rem, 7.5vw, 3.5rem); line-height: 1.15; }
+.display-5 { font-size: clamp(1.5rem, 6.5vw, 3rem); line-height: 1.2; }
+.lead { font-size: 1rem; }
+
+section { scroll-margin-top: calc(var(--cp-nav-h) + 8px); }
 
 /* Texto com preenchimento em degradê (títulos de destaque) */
 .text-grad {
@@ -42,8 +59,8 @@ section { scroll-margin-top: 80px; } /* âncoras não ficam sob a navbar */
 
 .section-label {
   text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 0.78rem;
+  letter-spacing: 3px;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--cp-orange);
 }
@@ -54,62 +71,90 @@ section { scroll-margin-top: 80px; } /* âncoras não ficam sob a navbar */
 
 /* --- Navbar -------------------------------------------------------------- */
 .navbar {
-  background-color: rgba(10, 10, 12, 0.92);
+  background-color: rgba(10, 10, 12, 0.94);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--cp-line);
+  min-height: var(--cp-nav-h);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
-.navbar-brand { font-size: 1.35rem; }
+.navbar-brand {
+  font-size: 0.95rem;
+  line-height: 1.1;
+  max-width: 70vw;
+  white-space: normal;
+}
+.navbar-toggler { padding: 0.35rem 0.5rem; }
+.navbar-toggler:focus { box-shadow: none; }
 .navbar .nav-link {
   color: #c9ccd3;
   font-weight: 500;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   letter-spacing: 1px;
+  padding-top: 0.7rem;    /* área de toque confortável */
+  padding-bottom: 0.7rem;
 }
 .navbar .nav-link:hover,
 .navbar .nav-link.active { color: #fff; }
+/* Menu aberto no celular: rola se não couber */
+.navbar-collapse {
+  max-height: calc(100vh - var(--cp-nav-h) - 16px);
+  overflow-y: auto;
+}
+.navbar-collapse .btn-grad { width: 100%; margin-top: 0.5rem; }
 
-/* --- Botões -------------------------------------------------------------- */
+/* --- Botões (largura total no celular) ---------------------------------- */
+.btn-grad,
+.btn-outline-light-2 {
+  width: 100%;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.8rem 1.5rem;
+  min-height: 48px;
+}
 .btn-grad {
   background: var(--cp-grad);
   color: #fff;
   border: 0;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 0.75rem 1.75rem;
   box-shadow: 0 10px 30px rgba(224, 27, 27, 0.28);
 }
 .btn-grad:hover { color: #fff; filter: brightness(1.1); }
-
 .btn-outline-light-2 {
   border: 1px solid rgba(255, 255, 255, 0.35);
   color: #fff;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 0.75rem 1.75rem;
 }
 .btn-outline-light-2:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+.btn-grad.btn-sm { padding: 0.55rem 1rem; min-height: 40px; }
 
-/* --- Hero ---------------------------------------------------------------- */
+/* --- Hero (celular: foto de fundo + véu escuro, texto centralizado) ----- */
 .hero {
   position: relative;
-  min-height: 88vh;
   display: flex;
   align-items: center;
+  padding: 3rem 0 3.5rem;
+  text-align: center;
   background: url("img/hero.jpg") center/cover no-repeat;
 }
-/* Camada de degradê sobre a foto para dar contraste ao texto */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(10,10,12,0.94) 0%, rgba(10,10,12,0.72) 45%, rgba(224,27,27,0.28) 100%);
+  background: linear-gradient(180deg, rgba(10, 10, 12, 0.82) 0%, rgba(10, 10, 12, 0.93) 70%, rgba(26, 13, 13, 0.96) 100%);
 }
 .hero > .container { position: relative; z-index: 2; }
+.hero .lead { margin-inline: auto; }
 
 /* --- Cards de serviço ---------------------------------------------------- */
+/* Bootstrap 5.3 força cor escura em .card e nas classes .h5/.h6 — reforçamos aqui */
+.card, .card-service { color: #d9dbe1; }
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6,
+.card .h1, .card .h2, .card .h3, .card .h4, .card .h5, .card .h6,
+h1.h5, h2.h5, h3.h5, h4.h5, .accordion-header .h5 { color: #fff; }
+.card .text-grad, .quote-card .text-grad { -webkit-text-fill-color: transparent; }
+
 .card-service {
   background-color: var(--cp-graphite-2);
   border: 1px solid var(--cp-line);
@@ -118,20 +163,21 @@ section { scroll-margin-top: 80px; } /* âncoras não ficam sob a navbar */
   transition: transform 0.25s ease, border-color 0.25s ease;
 }
 .card-service:hover {
-  transform: translateY(-6px);
   border-color: rgba(255, 122, 24, 0.55);
 }
 .card-service .icon-box {
-  width: 54px; height: 54px;
+  width: 48px; height: 48px;
   display: grid; place-items: center;
   border-radius: 12px;
   background: var(--cp-grad);
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   color: #fff;
+  flex: none;
 }
 
 /* --- Números / stats ----------------------------------------------------- */
-.stat-value { font-size: 2.4rem; font-weight: 800; line-height: 1; }
+.stat-value { font-size: clamp(1.5rem, 7vw, 2.4rem); font-weight: 800; line-height: 1; }
+.stat-label { font-size: 0.68rem; letter-spacing: 0.5px; display: block; }
 
 /* --- Galeria ------------------------------------------------------------- */
 .gallery-img {
@@ -139,8 +185,29 @@ section { scroll-margin-top: 80px; } /* âncoras não ficam sob a navbar */
   border: 1px solid var(--cp-line);
   object-fit: cover;
   width: 100%;
-  height: 260px;
+  height: 220px;
 }
+.carousel-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.carousel-item > img { aspect-ratio: 4 / 3; }
+/* Controles do carrossel com fundo — visíveis e fáceis de tocar no celular */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 46px;
+  height: 46px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(10, 10, 12, 0.6);
+  border-radius: 50%;
+  opacity: 1;
+}
+.carousel-control-prev { left: 8px; }
+.carousel-control-next { right: 8px; }
+.carousel-indicators { margin-bottom: 0.35rem; }
+.carousel-indicators [data-bs-target] { width: 26px; height: 4px; }
 
 /* --- Depoimentos --------------------------------------------------------- */
 .quote-card {
@@ -150,18 +217,25 @@ section { scroll-margin-top: 80px; } /* âncoras não ficam sob a navbar */
   max-width: 760px;
   margin: 0 auto;
 }
+/* Espaço lateral para não ficar sob as setas do carrossel */
+#carrosselDepo .carousel-inner { padding: 0 2.5rem; }
+#carrosselDepo .fs-5 { font-size: 1rem; }
 
 /* --- Formulário ---------------------------------------------------------- */
 .form-control, .form-control:focus {
   background-color: var(--cp-graphite-2);
   border: 1px solid var(--cp-line);
   color: #fff;
+  font-size: 1rem;   /* 16px evita o zoom automático do iOS */
+  min-height: 48px;
 }
+textarea.form-control { min-height: 120px; }
 .form-control:focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 122, 24, 0.2);
   border-color: var(--cp-orange);
 }
 .form-control::placeholder { color: #7c828e; }
+.form-label { font-size: 0.9rem; margin-bottom: 0.25rem; }
 
 /* --- Accordion (FAQ) ---------------------------------------------------- */
 .accordion-item {
@@ -175,27 +249,81 @@ section { scroll-margin-top: 80px; } /* âncoras não ficam sob a navbar */
   background-color: var(--cp-graphite-2);
   color: #fff;
   font-weight: 600;
+  font-size: 0.98rem;
+  padding: 0.9rem 1rem;
 }
 .accordion-button:not(.collapsed) { background: var(--cp-grad); color: #fff; }
 .accordion-button:focus { box-shadow: none; }
-.accordion-body { color: #b6bac3; }
+.accordion-body { color: #b6bac3; font-size: 0.95rem; }
+
+/* --- Contato: lista de informações -------------------------------------- */
+.contact-list li { align-items: flex-start; }
+.contact-list a, .contact-list span { word-break: break-word; }
 
 /* --- Footer ------------------------------------------------------------- */
 footer { background-color: var(--cp-graphite); border-top: 1px solid var(--cp-line); }
-footer a { color: #b6bac3; text-decoration: none; }
+footer a { color: #b6bac3; text-decoration: none; display: inline-block; padding: 0.25rem 0; }
 footer a:hover { color: var(--cp-orange); }
 .social-link {
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;
   display: inline-grid; place-items: center;
   border-radius: 50%;
   border: 1px solid var(--cp-line);
   color: #fff;
+  padding: 0;
 }
 .social-link:hover { background: var(--cp-grad); color: #fff; }
 
-/* --- Ajustes responsivos ------------------------------------------------ */
-@media (max-width: 767.98px) {
-  .hero { min-height: 78vh; text-align: center; }
-  .hero::after { background: linear-gradient(180deg, rgba(10,10,12,0.85), rgba(10,10,12,0.95)); }
-  .gallery-img { height: 200px; }
+/* --- Botão fixo de WhatsApp (só celular) -------------------------------- */
+.wa-float {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 1030;
+  width: 54px; height: 54px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  font-size: 1.6rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.wa-float:hover { color: #fff; filter: brightness(1.05); }
+
+/* ======================= TABLET (≥576px) ================================ */
+@media (min-width: 576px) {
+  .btn-grad, .btn-outline-light-2 { width: auto; }
+  .navbar-brand { font-size: 1.1rem; max-width: none; }
+  .gallery-img { height: 240px; }
+  #carrosselDepo .carousel-inner { padding: 0 3.5rem; }
+}
+
+/* ======================= DESKTOP (≥992px) =============================== */
+@media (min-width: 992px) {
+  :root { --cp-nav-h: 72px; }
+  body { font-size: 1.02rem; }
+  .navbar-brand { font-size: 1.35rem; }
+  .navbar .nav-link { font-size: 0.85rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
+  .navbar-collapse { overflow: visible; max-height: none; }
+  .navbar-collapse .btn-grad { width: auto; margin-top: 0; }
+  .lead { font-size: 1.2rem; }
+  .section-label { letter-spacing: 4px; font-size: 0.78rem; }
+
+  .hero {
+    min-height: 88vh;
+    padding: 0;
+    text-align: left;
+  }
+  .hero::after {
+    background: linear-gradient(90deg, rgba(10,10,12,0.94) 0%, rgba(10,10,12,0.72) 45%, rgba(224,27,27,0.28) 100%);
+  }
+  .hero .lead { margin-inline: 0; }
+
+  .card-service:hover { transform: translateY(-6px); }
+  .card-service .icon-box { width: 54px; height: 54px; font-size: 1.5rem; }
+  .gallery-img { height: 260px; }
+  .carousel-item > img { aspect-ratio: 16 / 9; }
+  #carrosselDepo .fs-5 { font-size: 1.25rem; }
+  .wa-float { display: none; } /* no desktop já há botões e formulário */
+  .py-lg-6 { padding-top: 5rem; padding-bottom: 5rem; }
 }
