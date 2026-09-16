@@ -262,8 +262,11 @@ textarea.form-control { min-height: 120px; }
 
 /* --- Footer ------------------------------------------------------------- */
 footer { background-color: var(--cp-graphite); border-top: 1px solid var(--cp-line); }
+/* Evita que e-mail/telefone longos estourem a coluna no celular */
+footer li, footer a, footer p { overflow-wrap: anywhere; }
 footer a { color: #b6bac3; text-decoration: none; display: inline-block; padding: 0.25rem 0; }
 footer a:hover { color: var(--cp-orange); }
+
 .social-link {
   width: 44px; height: 44px;
   display: inline-grid; place-items: center;
@@ -286,9 +289,13 @@ footer a:hover { color: var(--cp-orange); }
   background: #25d366;
   color: #fff;
   font-size: 1.6rem;
+  line-height: 1;          /* evita o ícone cortado no celular */
+  overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
+.wa-float i { line-height: 1; display: block; }
 .wa-float:hover { color: #fff; filter: brightness(1.05); }
+
 
 /* ======================= TABLET (≥576px) ================================ */
 @media (min-width: 576px) {
