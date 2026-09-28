@@ -136,7 +136,7 @@ section { scroll-margin-top: calc(var(--cp-nav-h) + 8px); }
   align-items: center;
   padding: 3rem 0 3.5rem;
   text-align: center;
-  background: url("img/hero.jpg") center/cover no-repeat;
+  background: url("img/img4.jpg") center/cover no-repeat;
 }
 .hero::after {
   content: "";
