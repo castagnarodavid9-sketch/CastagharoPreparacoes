@@ -147,6 +147,13 @@ section { scroll-margin-top: calc(var(--cp-nav-h) + 8px); }
 .hero > .container { position: relative; z-index: 2; }
 .hero .lead { margin-inline: auto; }
 
+/* Celular */
+@media (max-width: 767.98px) {
+  .hero {
+    background-image: url("img/img13.jpg");
+  }
+}
+
 /* --- Cards de serviço ---------------------------------------------------- */
 /* Bootstrap 5.3 força cor escura em .card e nas classes .h5/.h6 — reforçamos aqui */
 .card, .card-service { color: #d9dbe1; }
